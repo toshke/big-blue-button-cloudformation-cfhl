@@ -18,5 +18,10 @@ CloudFormation do
     Value(FnSub('https://${DomainName}'))
   end
 
+  Parameter('Testing') do
+    Type 'String'
+    Default template_dir
+    NoEcho false
+  end
 
 end
