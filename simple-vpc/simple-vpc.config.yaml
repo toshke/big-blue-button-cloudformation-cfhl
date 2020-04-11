@@ -34,15 +34,6 @@ nat_gateway:
 
 s3_endpoint: false
 dynamodb_endpoint: false
-# TODO:
-#subnets:
-#  private:
-#    internet_route: true
-#    range_size: '/24'
-#  database:
-#    internet_route: false
-#    range_size: '/24'
 
 tags:
   automation: cfhighlander
-  createdBy:  oz-cloudtools-meetup
