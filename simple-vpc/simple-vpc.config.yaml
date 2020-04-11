@@ -1,0 +1,48 @@
+###
+###  name property is used to name vpc, and for
+###   tagging of related configuration values
+###
+name: simple-vpc
+
+
+###
+###  List of availability zones will affect count of
+###   subnets per network zone (public, private)
+###
+availability_zones:
+  - ap-southeast-2a
+  - ap-southeast-2b
+  - ap-southeast-2c
+
+
+### network CIDR
+###  subnet CIDRs are created by taking sub-sequent CIDR blocks
+###  out of this master range
+cidr: 172.16.0.0/16
+
+### this property acts as a feature flag for public subnets
+###   connected to the internet via Internet Gateway
+internet_enabled: true
+
+###
+###  NatGateway for internet connectivity from private subnets
+###    you can choose to deploy single in first AZ (cheaper, no HA)
+###    or one Nat Gateway per availability zone (more expensive, internet access is in HA mode)
+nat_gateway:
+  enabled: false
+  per_az:  false
+
+s3_endpoint: false
+dynamodb_endpoint: false
+# TODO:
+#subnets:
+#  private:
+#    internet_route: true
+#    range_size: '/24'
+#  database:
+#    internet_route: false
+#    range_size: '/24'
+
+tags:
+  automation: cfhighlander
+  createdBy:  oz-cloudtools-meetup
