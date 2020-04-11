@@ -1,0 +1,37 @@
+# install bbb and configure
+name: big-blue-button
+user_data: 'file:user_data.sh'
+
+# recommended 4 cores and 8G
+instance_type_default: t3.xlarge
+
+# we need to be publicly accessible for bbb to work
+public_ip: true
+
+# instance needs to manage EIPs
+policies:
+  - PolicyName: EIPManage
+    PolicyDocument:
+      Version: '2012-10-17'
+      Statement:
+        - Effect: Allow
+          Action:
+            - ec2:DescribeAddresses
+            - ec2:AssociateAddress
+            - ec2:DisassociateAddress
+          Resource: '*'
+
+# allow ports according to bbb doco
+allow_incoming:
+  - port: 443
+    range: 0.0.0.0/0
+    protocol: tcp
+  - port: 80
+    range: 0.0.0.0/0
+    protocol: tcp
+  - port: 16384-32768
+    range: 0.0.0.0/0
+    protocol: udp
+
+# connect to instance using session manager
+allow_ssh: false
