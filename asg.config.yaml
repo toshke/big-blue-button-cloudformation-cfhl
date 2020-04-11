@@ -1,6 +1,5 @@
 # install bbb and configure
 name: big-blue-button
-user_data: 'file:user_data.sh'
 
 # recommended 4 cores and 8G
 instance_type_default: t3.xlarge

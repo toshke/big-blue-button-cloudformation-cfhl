@@ -6,13 +6,8 @@ ip_address="${EIP}"
 # set output to debug in system log if required, safe to do so, as no sensitive data is present
 set -x
 
-
-
 # install aws cli
 apt-get update && apt-get install -y awscli cloud-guest-utils
-
-# install cw agent and stream logs to cw
-
 
 # get EIP association status and dissacoite if required
 instance_id=$(ec2metadata --instance-id)
