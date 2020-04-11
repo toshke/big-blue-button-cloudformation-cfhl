@@ -9,10 +9,6 @@ CloudFormation do
   public_ip = external_parameters.fetch(:public_ip)
   allow_incoming = external_parameters.fetch(:allow_incoming)
 
-  if instance_userdata.start_with? 'file:'
-    instance_userdata = File.read (instance_userdata.sub('file:', ''))
-  end
-
   ingress_rules = []
 
   allow_incoming.each do |it|
