@@ -8,12 +8,20 @@ all: clean build test
 
 clean:
 	docker-compose down
+	rm -rf out
 .PHONY: clean
 
 _build:
 	gem install netaddr -v 1.5.1
 	cfhighlander cfcompile bbb
 
+_release:
+	gem install netaddr -v 1.5.1
+	scripts/release_all.rb
 build:
 	$(RUN_CFHL) make _build
-.PHONY: clean
+.PHONY: build
+
+release:
+	$(RUN_CFHL) make _release
+.PHONY: build
