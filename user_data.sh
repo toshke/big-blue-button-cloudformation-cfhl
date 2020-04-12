@@ -16,8 +16,8 @@ assocation_id=$(aws ec2 describe-addresses --public-ips ${!ip_address} --query A
 
 if [[ "${!assocation_id}" != "None" ]]; then
     aws ec2 disassociate-address --association-id ${!assocation_id}
-    # wait for disassociation to happen
-    sleep 5
+    # allow half a minute for networking changes to take effect
+    sleep 30
 fi
 
 aws ec2 associate-address --public-ip ${!ip_address} --instance-id ${!instance_id} --allow-reassociation
