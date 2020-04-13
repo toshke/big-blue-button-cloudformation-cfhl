@@ -1,1 +1,17 @@
+
+# if you wish to figure out Ubuntu 16.04 ami within given region, ruby snippet below will help
+#
+# ami_name = 'ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20200129'
+# cannonical_id = '099720109477'
+# regional_client = Aws::EC2::Client.new(region: region_name)
+# regional_ami = regional_client.describe_images({ filters: [
+#      { name: 'name', values: [ami_name] },
+#      { name: 'owner-id', values: [cannonical_id] }
+#  ] }).images[0].image_id
+
+# Ubuntu 16.04 AMI, from cannonical within ap-southeast-2
 image_id: ami-02d7e25c1cfdd5695
+
+# VPC for BBB server is rendered by default. If you want to supply your
+# own subnets through cfn parameter, set this to false.
+render_vpc: true
