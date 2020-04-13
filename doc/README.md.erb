@@ -7,7 +7,9 @@ on AWS platform. Templates source is compiled into final templates using [cfhigh
 ### TL;DR ###
 
 You will need Route53 Hosted zone to launch BigBlueButton cloudformation
-stack using regional-specific template, by clicking on appropriate link below
+stack using regional-specific template, by clicking on appropriate link below.
+Once the CFN stack is created, you can access your server at `https://${DomainName}` (DomainName being cfn parameter
+you provide)
 
 | Region        |Region name    |   Launch url  |
 | ------------- |:-------------:|:-------------:|
@@ -32,6 +34,17 @@ machine. Depending on method used, you will need
 
 - *Optional* Ruby (tested with v2.5) if building and publishing templates from your own host
 - *Optional* Docker, `docker-compose` and `make`, if using [3musketeers](https://3musketeers.io/) approach
+
+## Operations
+
+### Logging into your BigBlueButton server
+
+This solution uses AWS SSM Session Manager by default to connect to your BBB ec2 instance. See **Configuration** section below, if you
+wish to use ssh directly.
+
+### Administrator password
+
+Administrator password is stored in `//` SSM Parameter value. To retrieve it, use
 
 ## Usage
 
