@@ -5,7 +5,7 @@ CfhighlanderTemplate do
   Parameters do
     ComponentParam :Route53Zone, '', description: 'Route53 Zone name to create A record -e.g. example.com. Leave empty for manual DNS configuration. Omit trailing dot'
     ComponentParam :ElasticIP, '', description: 'Elastic IP Address to assign to BBB server. Will be created if non given'
-    ComponentParam :ImageId, ami_id, type: 'AWS::EC2::Image::Id', description: 'AMI Id for Ubuntu 16.04 Server Machine Image. Defaults to ap-southeast-2 AMI'
+    ComponentParam :ImageId, ami_id, type: 'AWS::EC2::Image::Id', description: 'AMI Id for Ubuntu 16.04 Server Machine Image. Default to cannonical image within template region'
   end
 
   Condition(:EIPNotProvided, FnEquals(Ref(:ElasticIP), ''))
