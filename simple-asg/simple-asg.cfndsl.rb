@@ -66,11 +66,11 @@ CloudFormation do
 
   EC2_LaunchTemplate(:LaunchTemplate) do
     LaunchTemplateData lt_data
-    LaunchTemplateName "#{name}-lt"
+    LaunchTemplateName "#{name}-lt" if named_resources
   end
 
   AutoScaling_AutoScalingGroup(:ASG) do
-    AutoScalingGroupName "#{name}"
+    AutoScalingGroupName "#{name}" if named_resources
     # line below causes Ref fn to be wrapped within array, hence using Property statement instead
     # VPCZoneIdentifier Ref(:SubnetIds)
     Property('VPCZoneIdentifier', Ref(:SubnetIds))

@@ -1,13 +1,17 @@
-# install bbb and configure
+# used for tagging and naming resources
 name: big-blue-button
 
-# recommended 4 cores and 8G
+# InstanceType for running BigBlueButton
+# recommended 4 cores and 8G, t3.xlarge is 4vCPU + 16GB
 instance_type_default: t3.xlarge
 
 # we need to be publicly accessible for bbb to work
+# setting this to false you will need to make sure that route53 domain is resolvable on local network, and
+# most likely you will be using private hosted zone
 public_ip: true
 
-# instance needs to manage EIPs
+# IAM policies for the instance within AutoScalingGroup
+# instance needs to manage Elastic IPs
 policies:
   - PolicyName: EIPManage
     PolicyDocument:
@@ -21,6 +25,8 @@ policies:
           Resource: '*'
 
 # allow ports according to bbb doco
+# if you want to ssh into instance instead of using SSM session manager add your home/work IP address and port 22 below,
+# in addition to setting allow_ssh: true, which will add cloudformation parameter for ec2 key pair name
 allow_incoming:
   - port: 443
     range: 0.0.0.0/0
