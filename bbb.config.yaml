@@ -1,4 +1,3 @@
-
 # if you wish to figure out Ubuntu 16.04 ami within given region, ruby snippet below will help
 #
 # ami_name = 'ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20200129'
@@ -15,3 +14,6 @@ image_id: ami-02d7e25c1cfdd5695
 # VPC for BBB server is rendered by default. If you want to supply your
 # own subnets through cfn parameter, set this to false.
 render_vpc: true
+
+# enable if you need ElasticIP provided to cloudformation, rather then passed in as a parameter
+external_eip: false
