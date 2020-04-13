@@ -14,11 +14,12 @@ CloudFormation do
 
 
   # check for private ranges
-  given_range = NetAddr::CIDR.create(cidr)
-  r1 = NetAddr::CIDR.create('172.16.0.0/12')
-  r2 = NetAddr::CIDR.create('10.0.0.0/8')
-  r3 = NetAddr::CIDR.create('192.168.0.0/16')
-  ok = (r1.contains? given_range) || (r2.contains? given_range) || (r3.contains? given_range)
+  given_range = NetAddr::IPv4Net.parse(cidr)
+  r1 = NetAddr::IPv4Net.parse('172.16.0.0/12')
+  r2 = NetAddr::IPv4Net.parse('10.0.0.0/8')
+  r3 = NetAddr::IPv4Net.parse('192.168.0.0/16')
+  # is left hand side is superset result of rel function is +1, nil if no relation and -1 is subset
+  ok = (r1.rel(given_range).to_i > 0) || (r2.rel(given_range).to_i > 0) || (r3.rel(given_range).to_i > 0)
   unless ok
     STDERR.print("CfndDSL VPC: #{cidr} must be valid private range!")
     exit 1
@@ -44,8 +45,7 @@ CloudFormation do
     end
   end
 
-  subnet_counter = 0
-  current_subnet = "#{cidr_components[0]}.#{cidr_components[1]}.#{subnet_counter}.0/24"
+  current_subnet = NetAddr::IPv4Net.parse("#{cidr_components[0]}.#{cidr_components[1]}.0.0/24")
 
   ## subnets
   ## public subnets
@@ -60,16 +60,15 @@ CloudFormation do
       EC2_Subnet(subnet_name) do
         VpcId Ref('VPC')
         AvailabilityZone az
-        CidrBlock current_subnet
+        CidrBlock current_subnet.to_s
         MapPublicIpOnLaunch false
         Tags [{ 'Key' => 'Name', 'Value' => "#{name}-#{subnet_name}" }]
       end
       Output(subnet_name) do
         Value(Ref(subnet_name))
       end
-      subnet_counter = subnet_counter + 1
-      current_subnet = "#{cidr_components[0]}.#{cidr_components[1]}.#{subnet_counter}.0/24"
-      i = i+1
+      current_subnet = current_subnet.next_sib
+      i = i + 1
     end
   end
   ## private subnets
@@ -87,9 +86,8 @@ CloudFormation do
     Output(subnet_name) do
       Value(Ref(subnet_name))
     end
-    subnet_counter = subnet_counter + 1
-    current_subnet = "#{cidr_components[0]}.#{cidr_components[1]}.#{subnet_counter}.0/24"
-    i = i+1
+    current_subnet = current_subnet.next_sib
+    i = i + 1
   end
 
   route_tables = []
@@ -113,7 +111,7 @@ CloudFormation do
         SubnetId Ref(subnet)
         RouteTableId Ref('PublicRouteTable')
       end
-      i = i+1
+      i = i + 1
     end
   end
 

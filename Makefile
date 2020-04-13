@@ -19,17 +19,17 @@ clean:
 .PHONY: clean
 
 _build:
-	gem install netaddr -v 1.5.1
+	gem install netaddr -v 2.0.4
 	cfhighlander cfcompile bbb --validate
 
 _publish:
-	gem install netaddr -v 1.5.1
+	gem install netaddr -v 2.0.4
 	echo $(AWS_DEFAULT_REGION)
 	echo $(AWS_REGION)
 	cfhighlander cfpublish bbb --validate --dstbucket $(DIST_BUCKET) --dstprefix $(DIST_PREFIX) --version $(DIST_VERSION)
 
 _release:
-	gem install netaddr -v 1.5.1
+	gem install netaddr -v 2.0.4
 	scripts/release_all.rb
 
 build:
