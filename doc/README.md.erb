@@ -1,0 +1,32 @@
+## Big Blue Button on AWS
+
+
+Source code repository for generating [Big Blue Button](https://bigbluebutton.org/) aws cloudformation templates
+using [cfhighlander](https://github.com/theonestack/cfhighlander) tool.
+
+### TL;DR ###
+
+You will need Route53 Hosted zone to launch BigBlueButton cloudformation
+stack using regional-specific template, by clicking on appropriate link below
+
+| Region        |Region name    |   Launch url  |
+| ------------- |:-------------:|:-------------:|
+<%- all_regions.each do |region| -%>
+| `<%= region['code'] %>` | <%= region['name']  %> | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=<%= region['launch_url'] %>)  |
+<%- end -%>
+
+## Intro
+
+This component was initially developed for needs of [AWS Tools And Programming](https://www.meetup.com/Melbourne-AWS-Programming-and-Tools-Meetup/) meetup
+workshop. Due recent surge in need for distant learning solutions, it was made further configurable for use in
+different educational and enterprise settings. By no means is this final version of the component,
+and pull requests and feature requests are welcome.
+
+## Prerequisites
+
+- AWS Account with valid programatic access credentials (api keys)
+- *Valid* Route53 Hosted Zone within AWS Account (e.g. example.com)
+
+## Configuration
+
+TBD
