@@ -5,6 +5,8 @@ services:
     image: theonestack/cfhighlander:0.12.0
     volumes:
       - $HOME/.aws:/root/.aws
+    env_file:
+      - .env
   awscli:
     build:
       dockerfile: Dockerfile.awscli

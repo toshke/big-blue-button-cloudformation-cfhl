@@ -1,8 +1,8 @@
 ## Big Blue Button on AWS
 
-
-Source code repository for generating [Big Blue Button](https://bigbluebutton.org/) aws cloudformation templates
-using [cfhighlander](https://github.com/theonestack/cfhighlander) tool.
+[Big Blue Button](https://bigbluebutton.org/) is an open source solution for online conferencing
+and distance learning. This repository contains templates and source code for deploying the solution
+on AWS platform. Templates source is compiled into final templates using [cfhighlander](https://github.com/theonestack/cfhighlander) tool.
 
 ### TL;DR ###
 
@@ -25,8 +25,54 @@ and pull requests and feature requests are welcome.
 ## Prerequisites
 
 - AWS Account with valid programatic access credentials (api keys)
-- *Valid* Route53 Hosted Zone within AWS Account (e.g. example.com)
+- **Valid** Route53 Hosted Zone within AWS Account (e.g. example.com)
 
-## Configuration
+If you want to build and publish your own templates, you can do so either through docker, or directly on host
+machine. Depending on method used, you will need
 
-TBD
+- *Optional* Ruby (tested with v2.5) if building and publishing templates from your own host
+- *Optional* Docker, `docker-compose` and `make`, if using [3musketeers](https://3musketeers.io/) approach
+
+## Usage
+
+Simplest way of launching BigBlueButton on AWS is through one of the links from the top of this page. Optionally,
+you may want to configure, update, generate and upload your own template to S3
+
+### Generate and build your own templates
+
+
+If you prefer to build and publish your own templates rather then using links provided above:
+
+#### Without docker
+
+```
+# first, clone the repo
+$ git clone https://github.com/toshke/cfhl-big-blue-button.git && cd cfhl-big-blue-button
+
+# install required gems
+$ bundle install
+
+# build and validate cf templates
+$ cfcompile bbb ---validate
+
+# templates can be located in out/yaml folder. to upload to s3 use cfpublish. Use your own bucket
+# and desired prefix
+$ cfhighlander cfpublish --validate bbb --dstbucket mys3bucket --dstprefix 'cftemplates/big-blue-button'
+```
+
+After cfpublish command, launch stack url will be displayed in terminal output
+
+#### Using docker
+
+```shell
+# first, clone the repo
+$ git clone https://github.com/toshke/cfhl-big-blue-button.git && cd cfhl-big-blue-button
+
+# build and validate templates
+$ make build
+
+# templates can be located in out/yaml folder. to upload to s3 use cfpublish. Use your own bucket
+# and desired prefix
+$ make publish DIST_BUCKET=templates.cfhighlander.info DIST_PREFIX=cftemplates/big-blue-button [DIST_VERSION=1.0]
+
+```
