@@ -1,0 +1,17 @@
+# tags given to created resources
+tags:
+  automation: cfhighlander
+
+# Rules for backup plan
+# default to daily backup every 24h, kept for 7 days
+#   and weekly backup, kept for 4 weeks
+#   Allows for full hour for backup process to start, and 2 hours
+#   for backup process to complete
+backup_rules:
+  - StartWindowMinutes: 60
+    CompletionWindowMinutes: 180
+    RuleName: DefaultDailyBackup
+    ScheduleExpression: "cron(25 9 ? * * *)"
+    Lifecycle:
+      DeleteAfterDays: 7
+    TargetBackupVault: BigBlueButton

@@ -25,22 +25,22 @@ admin credentials.
 
 | Region        |Region name    |   Launch url  |
 | ------------- |:-------------:|:-------------:|
-| `ap-southeast-2` | Asia Pacific (Sydney) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-southeast-2.amazonaws.com/templates-ap-southeast-2.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `us-east-1` | US East (N. Virginia) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-east-1.amazonaws.com/templates-us-east-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `ap-northeast-1` | Asia Pacific (Tokyo) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-northeast-1.amazonaws.com/templates-ap-northeast-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `ap-northeast-2` | Asia Pacific (Seoul) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-northeast-2.amazonaws.com/templates-ap-northeast-2.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `ap-southeast-1` | Asia Pacific (Singapore) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-southeast-1.amazonaws.com/templates-ap-southeast-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `ap-south-1` | Asia Pacific (Mumbai) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-south-1.amazonaws.com/templates-ap-south-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `eu-central-1` | EU (Frankfurt) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-central-1.amazonaws.com/templates-eu-central-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `eu-north-1` | Europe (Stockholm) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-north-1.amazonaws.com/templates-eu-north-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `eu-west-1` | EU (Ireland) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-west-1.amazonaws.com/templates-eu-west-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `eu-west-2` | Europe (London) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-west-2.amazonaws.com/templates-eu-west-2.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `eu-west-3` | Europe (Paris) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-west-3.amazonaws.com/templates-eu-west-3.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `us-east-2` | US East (Ohio) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-east-2.amazonaws.com/templates-us-east-2.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `us-west-1` | US West (N. California) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-west-1.amazonaws.com/templates-us-west-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `us-west-2` | US West (Oregon) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-west-2.amazonaws.com/templates-us-west-2.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `sa-east-1` | South America (Sao Paulo) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.sa-east-1.amazonaws.com/templates-sa-east-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
-| `ca-central-1` | Canada (Central) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ca-central-1.amazonaws.com/templates-ca-central-1.cfhighlander.info/templates/bbb/413d6dc/bbb.compiled.yaml)  |
+| `ap-southeast-2` | Asia Pacific (Sydney) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-southeast-2.amazonaws.com/templates-ap-southeast-2.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `us-east-1` | US East (N. Virginia) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-east-1.amazonaws.com/templates-us-east-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `ap-northeast-1` | Asia Pacific (Tokyo) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-northeast-1.amazonaws.com/templates-ap-northeast-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `ap-northeast-2` | Asia Pacific (Seoul) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-northeast-2.amazonaws.com/templates-ap-northeast-2.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `ap-southeast-1` | Asia Pacific (Singapore) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-southeast-1.amazonaws.com/templates-ap-southeast-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `ap-south-1` | Asia Pacific (Mumbai) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ap-south-1.amazonaws.com/templates-ap-south-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `eu-central-1` | EU (Frankfurt) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-central-1.amazonaws.com/templates-eu-central-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `eu-north-1` | Europe (Stockholm) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-north-1.amazonaws.com/templates-eu-north-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `eu-west-1` | EU (Ireland) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-west-1.amazonaws.com/templates-eu-west-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `eu-west-2` | Europe (London) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-west-2.amazonaws.com/templates-eu-west-2.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `eu-west-3` | Europe (Paris) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.eu-west-3.amazonaws.com/templates-eu-west-3.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `us-east-2` | US East (Ohio) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-east-2.amazonaws.com/templates-us-east-2.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `us-west-1` | US West (N. California) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-west-1.amazonaws.com/templates-us-west-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `us-west-2` | US West (Oregon) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.us-west-2.amazonaws.com/templates-us-west-2.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `sa-east-1` | South America (Sao Paulo) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.sa-east-1.amazonaws.com/templates-sa-east-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
+| `ca-central-1` | Canada (Central) | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ca-central-1.amazonaws.com/templates-ca-central-1.cfhighlander.info/templates/bbb/1586857141/bbb.compiled.yaml)  |
 
 ## Intro
 
@@ -103,7 +103,10 @@ generate cloudformation templates with ssh access enabled (see config below).
 ```shell
 # lookup instance-id. Either look for instance named '' in your ec2 console,
 # or execute command below
-$ instance_id=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=BigBlutButton-Server" --query 'Reservations[].Instances[].InstanceId' --output text)
+$ instance_id=$(aws ec2 describe-instances --filters \
+     "Name=instance-state-name,Values=running" \
+     "Name=tag:Name,Values=BigBlutButton-Server" \
+     --query 'Reservations[].Instances[].InstanceId' --output text)
 
 # to log into the instance use ssm
 $ aws ssm start-session --target "${instance_id}"
@@ -143,7 +146,7 @@ as configuration to Cfhighlander and Cfndsl templates.
 - `asg.config.yaml`
 - `backup.config.yaml`
 
-All 3 files come with explanation for configuration keys and their values.
+All 3 files come with explanation for configuration keys and their values. Some examples are
 
 **Use your own VPC** - Look at `bbb.config.yaml:render_vpc`
 
