@@ -26,7 +26,7 @@ admin credentials.
 | Region        |Region name    |   Launch url  |
 | ------------- |:-------------:|:-------------:|
 <%- all_regions.each do |region| -%>
-| `<%= region['code'] %>` | <%= region['name']  %> | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=big-blue-button&templateURL=<%= region['launch_url'] %>)  |
+| `<%= region['code'] %>` | <%= region['name']  %> | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=<%= region['code'] %>#/stacks/new?stackName=big-blue-button&templateURL=<%= region['launch_url'] %>)  |
 <%- end -%>
 
 ## Intro
@@ -122,7 +122,11 @@ you may want to configure, update, generate and upload your own template to S3. 
 
 If you wish to make customizations from default setup, and  build and publish your own templates rather then using links provided above,
 read below for configuration options, as well as on how to build, publish and manage the templates.
+Firs step is to clone this repo
 
+```shell
+git clone https://github.com/toshke/cfhl-big-blue-button.git
+```
 ### Configuration
 
 If you wish to tweak the generated templates, update the values in following files, as they are passed in
@@ -133,7 +137,7 @@ as configuration to Cfhighlander and Cfndsl templates.
 - `asg.config.yaml`
 - `backup.config.yaml`
 
-All 3 files come with explanation for configuration keys and their values. Some examples are
+All files come with explanation for configuration keys and their values. Some examples are
 
 **Use your own VPC** - Look at `bbb.config.yaml:render_vpc`
 
