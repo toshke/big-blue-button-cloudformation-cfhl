@@ -3,13 +3,15 @@ CloudFormation do
   name = external_parameters.fetch(:name)
   instance_userdata = external_parameters.fetch(:user_data)
   capacity = external_parameters.fetch(:capacity)
-  termination_policies = external_parameters.fetch(:termination_policies)
-  policies = external_parameters.fetch(:policies)
-  managed_policies = external_parameters.fetch(:managed_policies)
+  termination_policies = external_parameters.fetch(:termination_policies, [])
+  policies = external_parameters.fetch(:policies, [])
+  managed_policies = external_parameters.fetch(:managed_policies, [])
   public_ip = external_parameters.fetch(:public_ip)
   allow_incoming = external_parameters.fetch(:allow_incoming)
 
   ingress_rules = []
+
+  tags = tags.collect { |k, v| { 'Key' => k, 'Value' => v, 'PropagateAtLaunch' => true } }
 
   allow_incoming.each do |it|
     rule = { CidrIp: it['range'], IpProtocol: it.fetch('protocol', 'tcp') }
@@ -53,8 +55,8 @@ CloudFormation do
       SecurityGroupIds: [Ref(:ASGSecGroup)],
       UserData: FnBase64(FnSub(instance_userdata))
   }
-
   lt_data[:KeyName] = Ref(:KeyName) if allow_ssh
+  lt_data[:BlockDeviceMappings] = device_mappings if device_mappings
 
   if public_ip
     lt_data[:NetworkInterfaces] = [{
@@ -79,7 +81,8 @@ CloudFormation do
     MaxSize capacity.fetch(:max, '1')
     DesiredCapacity capacity.fetch(:desired, '1')
     TerminationPolicies termination_policies
-    Tags [{ Key: 'Name', Value: "#{name}-asg", PropagateAtLaunch: true }]
+    Tags [{ Key: 'Name', Value: "#{name}-asg", PropagateAtLaunch: true }] if tags.empty?
+    Tags tags unless tags.empty?
   end
 
 end

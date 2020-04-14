@@ -23,7 +23,17 @@ policies:
             - ec2:AssociateAddress
             - ec2:DisassociateAddress
           Resource: '*'
-
+  - PolicyName: SSMStoreAdmin
+    PolicyDocument:
+      Version: '2012-10-17'
+      Statement:
+        - Effect: Allow
+          Action:
+            - ssm:PutParameter
+          Resource:
+            - Fn::Sub: 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${ConfigSSMPath}/admin_password'
+            - Fn::Sub: 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${ConfigSSMPath}/admin_user'
+            - Fn::Sub: 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${ConfigSSMPath}/server_url'
 # allow ports according to bbb doco
 # if you want to ssh into instance instead of using SSM session manager add your home/work IP address and port 22 below,
 # in addition to setting allow_ssh: true, which will add cloudformation parameter for ec2 key pair name
@@ -40,3 +50,16 @@ allow_incoming:
 
 # connect to instance using session manager
 allow_ssh: false
+
+# device mappings - encrypt by default, take size as parameter
+# add any additional drives you may want to use as data drives. Any data drives should
+# have DeleteOnTermination: false (aside from the fact they are backed up by AWS Backup)
+device_mappings:
+  - DeviceName: '/dev/sda1'
+    Ebs:
+      DeleteOnTermination: true
+      Encrypted: true
+      KmsKeyId: 'alias/aws/ebs'
+      VolumeSize:
+        Ref: RootVolumeSpace
+
