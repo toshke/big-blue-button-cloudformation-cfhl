@@ -33,5 +33,5 @@ nat_gateway:
   per_az:  false
 
 tags:
-  automation: cfhighlander
+  renderedBy: cfhighlander
   createdBy:  github.com/toshke/cfhl-big-blue-button

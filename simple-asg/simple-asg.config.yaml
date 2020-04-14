@@ -39,5 +39,13 @@ allow_incoming:
 # allow ssh - if set to false, keypair parameter will be omitted
 allow_ssh: true
 
-# set to true if you wish for ASG and LaunchTemplate to be explictily named using name config value
+# set to true if you wish for ASG and LaunchTemplate to be explicitly named using name config value
 named_resources: false
+
+device_mappings:
+  - DeviceName: '/dev/sda1'
+    Ebs:
+      DeleteOnTermination: true
+      Encrypted: true
+      KmsKeyId: '/alias/aws/ebs'
+      VolumeSize: 20

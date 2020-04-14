@@ -17,3 +17,18 @@ render_vpc: true
 
 # enable if you need ElasticIP provided to cloudformation, rather then passed in as a parameter
 external_eip: false
+
+# location for Greenlight web interface admin password
+default_ssm_path: /bigbluebutton/config
+
+# tags will be used to tag and backup instances
+tags:
+  Name: BigBlutButton-Server
+  createdBy: 'https://github.com/toshke/cfhl-big-blue-button'
+  renderedBy: cfhighlander
+
+# what key to used for backup selection criteria
+backup_tag_key: Name
+
+# name for the backup plan
+backup_plan_name: BigBlueButton
