@@ -138,7 +138,7 @@ read below for configuration options, as well as on how to build, publish and ma
 Firs step is to clone this repo
 
 ```shell
-git clone https://github.com/toshke/cfhl-big-blue-button.git
+git clone https://github.com/toshke/.git
 ```
 ### Configuration
 
@@ -186,7 +186,7 @@ Docker method respects `AWS_REGION` and `AWS_DEFAULT_REGION` environment variabl
 
 ```shell
 # first, clone the repo
-$ git clone https://github.com/toshke/cfhl-big-blue-button.git && cd cfhl-big-blue-button
+$ git clone https://github.com/toshke/.git && cd 
 
 # build and validate templates
 $ make build
@@ -201,7 +201,7 @@ $ make publish DIST_BUCKET=templates.cfhighlander.info DIST_PREFIX=cftemplates/b
 
 ```
 # first, clone the repo
-$ git clone https://github.com/toshke/cfhl-big-blue-button.git && cd cfhl-big-blue-button
+$ git clone https://github.com/toshke/.git && cd 
 
 # install required gems
 $ bundle install
