@@ -92,7 +92,7 @@ generate cloudformation templates with ssh access enabled (see config below).
 # or execute command below
 $ instance_id=$(aws ec2 describe-instances --filters \
      "Name=instance-state-name,Values=running" \
-     "Name=tag:Name,Values=BigBlutButton-Server" \
+     "Name=tag:Name,Values=BigBlueButton-Server" \
      --query 'Reservations[].Instances[].InstanceId' --output text)
 
 # to log into the instance use ssm
