@@ -23,8 +23,8 @@ if [[ "${!assocation_id}" != "None" ]]; then
 fi
 
 aws ec2 associate-address --public-ip ${!ip_address} --instance-id ${!instance_id} --allow-reassociation
-# allow for 5 seconds for networking updates on the instance itself
-sleep 5
+# allow for 60 seconds for networking updates on the instance itself
+sleep 60
 mkdir -p /tmp/bbb-install && \
     cd /tmp/bbb-install && \
     wget https://ubuntu.bigbluebutton.org/bbb-install.sh  && \
