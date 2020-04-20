@@ -23,7 +23,7 @@ default_ssm_path: /bigbluebutton/config
 
 # tags will be used to tag and backup instances
 tags:
-  Name: BigBlutButton-Server
+  Name: BigBlueButton-Server
   createdBy: 'https://github.com/toshke/'
   renderedBy: cfhighlander
 
