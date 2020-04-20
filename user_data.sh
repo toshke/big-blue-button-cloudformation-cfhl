@@ -23,8 +23,14 @@ if [[ "${!assocation_id}" != "None" ]]; then
 fi
 
 aws ec2 associate-address --public-ip ${!ip_address} --instance-id ${!instance_id} --allow-reassociation
-# allow for 60 seconds for networking updates on the instance itself
-sleep 60
+# wait until metadata service returns proper public ip
+while :
+do
+  pub_ip=$(wget -qO- http://169.254.169.254/latest/meta-data/public-ipv4)
+  echo "public_ip: ${!pub_ip}"
+  if [[ "${!pub_ip}" == "${!ip_address}" ]]; then break; fi
+  sleep 1
+done
 mkdir -p /tmp/bbb-install && \
     cd /tmp/bbb-install && \
     wget https://ubuntu.bigbluebutton.org/bbb-install.sh  && \
