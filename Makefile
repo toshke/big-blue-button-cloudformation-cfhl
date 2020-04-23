@@ -3,7 +3,7 @@
 RUN_CFHL=docker-compose run --rm -v $$PWD:/src -w /src -u 0 cfhl
 RUN_AWSCLI=docker-compose run --rm -v $$PWD:/src -w /src -u 0 awscli
 CFHL_DOCKER_TAG ?= latest
-TEMPLATES_DIST_VERSION ?= $(shell git rev-parse --short HEAD)
+TEMPLATES_DIST_VERSION ?= $(shell date +%s)
 
 DIST_BUCKET ?=
 DIST_PREFIX ?=
