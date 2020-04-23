@@ -10,9 +10,12 @@ name: bbb-vpc
 ###   subnets per network zone (public, private)
 ###
 availability_zones:
-  - ap-southeast-2a
-  - ap-southeast-2b
-  - ap-southeast-2c
+  - us-east-1a
+  - us-east-1b
+  - us-east-1c
+#  - ap-southeast-2a
+#  - ap-southeast-2b
+#  - ap-southeast-2c
 
 
 ### network CIDR

@@ -5,6 +5,31 @@ CloudFormation do
     Condition :EIPNotProvided if external_eip
   end
 
+  ingress_rules = []
+  allow_incoming.each do |it|
+    rule = { CidrIp: it['range'], IpProtocol: it.fetch('protocol', 'tcp') }
+    if it['port'].to_s.include? '-'
+      rule[:FromPort] = it['port'].split('-')[0]
+      rule[:ToPort] = it['port'].split('-')[1]
+    else
+      rule[:FromPort] = it['port'].to_i
+      rule[:ToPort] = it['port'].to_i
+    end
+    ingress_rules << rule
+  end
+
+  EC2_SecurityGroup(:ASGSecGroup) do
+    VpcId FnGetAtt('vpc', 'Outputs.VpcId')
+    GroupDescription "#{name} - ASG SG"
+    SecurityGroupIngress ingress_rules
+  end
+  EC2_NetworkInterface(:ElasticInterface) do
+    Description 'BBB public access ENI'
+    GroupSet [Ref(:ASGSecGroup)]
+    SubnetId FnGetAtt('vpc', 'Outputs.PublicA')
+  end
+
+
   Route53_RecordSet(:DNSRecord) do
     Condition :ZoneProvided
     HostedZoneName FnSub('${Route53Zone}.')

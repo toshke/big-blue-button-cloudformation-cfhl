@@ -28,7 +28,7 @@ CfhighlanderTemplate do
     parameter name: :EIP, value: FnIf(:EIPProvided, Ref(:ElasticIP), Ref(:EIPResource)) if external_eip
     parameter name: :EIP, value: Ref(:EIPResource) unless external_eip
     parameter name: :WaitHandle, value: Ref(:WaitSetupCompleteHandle)
-
+    parameter name: :ElasticInterfaceID, value: Ref(:ElasticInterface)
     # extended parameters from default component
     Parameters do
       # global parameters bubble up to top level component without prefix
@@ -38,6 +38,7 @@ CfhighlanderTemplate do
       ComponentParam :RootVolumeSpace, 40, type: 'Number', description: 'Size in GB for server root volume. Default install takes about 8GB', isGlobal: true, minValue: 20
       ComponentParam :ConfigSSMPath, default_ssm_path, type: 'String', description: 'Path in SSM to store configuration', isGlobal: true
       ComponentParam :WaitHandle
+      ComponentParam :ElasticInterfaceID
     end
   end
 

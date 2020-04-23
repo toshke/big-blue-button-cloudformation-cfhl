@@ -11,9 +11,10 @@ apt-get update && \
  apt-get install -y awscli cloud-guest-utils  python3-pip && \
  pip3 install awscli --upgrade
 
+
 # get EIP association status and dissacoite if required
 instance_id=$(ec2metadata --instance-id)
-allocation_id=$(aws ec2 describe-addresses --public-ips ${!ip_address} --query Addresses[0].AllocationId --output text)
+allocation_id=$(aws ec2 describe-addresses --public-ips ${!]ip_address} --query Addresses[0].AllocationId --output text)
 assocation_id=$(aws ec2 describe-addresses --public-ips ${!ip_address} --query Addresses[0].AssociationId --output text)
 
 if [[ "${!assocation_id}" != "None" ]]; then
@@ -21,21 +22,29 @@ if [[ "${!assocation_id}" != "None" ]]; then
     # allow half a minute for networking changes to take effect
     sleep 30
 fi
-
-aws ec2 associate-address --public-ip ${!ip_address} --instance-id ${!instance_id} --allow-reassociation
+exit 0
+aws ec2 associate-address --allocation-id ${!allocation_id} --network-interface-id ${ElasticInterfaceID} --allow-reassociation
 # wait until metadata service returns proper public ip
-while :
-do
-  pub_ip=$(wget -qO- http://169.254.169.254/latest/meta-data/public-ipv4)
-  echo "public_ip: ${!pub_ip}"
-  if [[ "${!pub_ip}" == "${!ip_address}" ]]; then break; fi
-  sleep 1
-done
+#while :
+#do
+#  pub_ip=$(wget -qO- http://169.254.169.254/latest/meta-data/public-ipv4)
+#  echo "public_ip: ${!pub_ip}"
+#  if [[ "${!pub_ip}" == "${!ip_address}" ]]; then break; fi
+#  sleep 1
+#done
 mkdir -p /tmp/bbb-install && \
     cd /tmp/bbb-install && \
     wget https://ubuntu.bigbluebutton.org/bbb-install.sh  && \
-    chmod a+x bbb-install.sh && \
-    ./bbb-install.sh -v xenial-220 -s ${DomainName} -e ${AdminEmail} -l -g
+    chmod a+x bbb-install.sh
+
+n=0
+until [ $n -ge 5 ]
+do
+   ./bbb-install.sh -v xenial-220 -s ${DomainName} -e ${AdminEmail} -l -g && break
+   echo "Previous attempt failed, restarting.."
+   sleep 3
+   n=$[$n+1]
+done
 
 # create default admin password
 ADMIN_PASWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${!1:-32} | head -n 1)
