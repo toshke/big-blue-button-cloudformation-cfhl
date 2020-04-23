@@ -34,8 +34,16 @@ done
 mkdir -p /tmp/bbb-install && \
     cd /tmp/bbb-install && \
     wget https://ubuntu.bigbluebutton.org/bbb-install.sh  && \
-    chmod a+x bbb-install.sh && \
-    ./bbb-install.sh -v xenial-220 -s ${DomainName} -e ${AdminEmail} -l -g
+    chmod a+x bbb-install.sh
+
+n=0
+until [ $n -ge 5 ]
+do
+   ./bbb-install.sh -v xenial-220 -s ${DomainName} -e ${AdminEmail} -l -g && break
+   echo "Previous attempt failed, restarting.."
+   sleep 3
+   n=$[$n+1]
+done
 
 # create default admin password
 ADMIN_PASWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${!1:-32} | head -n 1)
