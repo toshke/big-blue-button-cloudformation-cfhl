@@ -6,7 +6,7 @@ on AWS platform. Templates source is compiled into final templates using [cfhigh
 
 Features
 
-- Turn-key solution go get BigBlueButton up and running on AWS
+- Turn-key solution to get BigBlueButton up and running on AWS
 - Admin password available in SSM once the stack has been created
 - Configurable disk size
 - Root disk encrypted by default
@@ -26,7 +26,7 @@ admin credentials.
 | Region        |Region name    |   Launch url  |
 | ------------- |:-------------:|:-------------:|
 <%- all_regions.each do |region| -%>
-| `<%= region['code'] %>` | <%= region['name']  %> | [![Launch Stack](launch-stack.svg)](https://console.aws.amazon.com/cloudformation/home?region=<%= region['code'] %>#/stacks/new?stackName=big-blue-button&templateURL=<%= region['launch_url'] %>)  |
+| `<%= region['code'] %>` | <%= region['name']  %> | <a target="_blank" href="https://console.aws.amazon.com/cloudformation/home?region=<%= region['code'] %>#/stacks/new?stackName=big-blue-button&templateURL=<%= region['launch_url']%>"><img src="https://raw.githubusercontent.com/toshke/big-blue-button-cloudformation-cfhl/fec34f65f91ef984f95945a2e6e285c6b54f9992/launch-stack.svg" /></a>  |
 <%- end -%>
 
 [You can watch the setup on-screen video recording here](https://youtu.be/ViCy0GsNRVQ)

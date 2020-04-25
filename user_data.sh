@@ -15,6 +15,7 @@ apt-get update && \
 instance_id=$(ec2metadata --instance-id)
 allocation_id=$(aws ec2 describe-addresses --public-ips ${!ip_address} --query Addresses[0].AllocationId --output text)
 assocation_id=$(aws ec2 describe-addresses --public-ips ${!ip_address} --query Addresses[0].AssociationId --output text)
+handle_id=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${!1:-32} | head -n 1)
 
 if [[ "${!assocation_id}" != "None" ]]; then
     aws ec2 disassociate-address --association-id ${!assocation_id}
@@ -32,16 +33,16 @@ do
   sleep 1
 done
 mkdir -p /tmp/bbb-install && \
-    cd /tmp/bbb-install && \
-    wget https://ubuntu.bigbluebutton.org/bbb-install.sh  && \
-    chmod a+x bbb-install.sh
+    cd /tmp/bbb-install
 
 n=0
-until [ $n -ge 5 ]
+until [ $n -ge 9 ]
 do
+    wget https://ubuntu.bigbluebutton.org/bbb-install.sh  && \
+    chmod a+x bbb-install.sh && \
    ./bbb-install.sh -v xenial-220 -s ${DomainName} -e ${AdminEmail} -l -g && break
-   echo "Previous attempt failed, restarting.."
-   sleep 3
+   echo "Previous attempt failed, restarting in 20 seconds.."
+   sleep 20
    n=$[$n+1]
 done
 
@@ -58,8 +59,7 @@ if [[ $? == "0" ]]; then
 fi
 echo "BigBlueButton server setup complete!!!"
 
-HANDLE_ID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w ${!1:-32} | head -n 1)
-echo "Signalling setup complete to CFN using id ${!HANDLE_ID}"
+echo "Signalling setup complete to CFN using id ${!handle_id}"
 curl -X PUT -H 'Content-Type:' --data-binary \
-    "{\"Status\" : \"SUCCESS\",\"Reason\" : \"BBB Configuration Complete\",\"UniqueId\" : \"${!HANDLE_ID}\",\"Data\" : \"Application has completed configuration.\"}" \
+    "{\"Status\" : \"SUCCESS\",\"Reason\" : \"BBB Configuration Complete\",\"UniqueId\" : \"${!handle_id}\",\"Data\" : \"Application has completed configuration.\"}" \
     "${WaitHandle}"

@@ -23,3 +23,9 @@ backup_rules:
       DeleteAfterDays: 28
     TargetBackupVault: weeklyBackups
 
+# tagging criteria for resources
+backup_selection:
+  - tag_key: aws_backup
+    tag_value: 'true'
+
+named: true
