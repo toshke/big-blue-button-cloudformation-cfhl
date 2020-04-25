@@ -7,6 +7,10 @@ tags:
 #   and weekly backup, kept for 4 weeks
 #   Allows for full hour for backup process to start, and 2 hours
 #   for backup process to complete
+
+# allow for multiple instances of bbb
+named: false
+
 backup_rules:
   - StartWindowMinutes: 60
     CompletionWindowMinutes: 180

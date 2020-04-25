@@ -41,7 +41,13 @@ CfhighlanderTemplate do
     end
   end
 
-  Component template: 'aws-backup-plan', name: 'backup' do
+  backup_config = {
+      'backup_selection' => [{
+          'tag_key' => 'Name',
+          'tag_value' => tags['Name']
+      }]
+  }
+  Component template: 'aws-backup-plan', name: 'backup', config: backup_config do
     # overriding backup plan name
     parameter name: :PlanName, value: backup_plan_name
 
