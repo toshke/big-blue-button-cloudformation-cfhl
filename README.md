@@ -140,7 +140,7 @@ read below for configuration options, as well as on how to build, publish and ma
 Firs step is to clone this repo
 
 ```shell
-git clone https://github.com/toshke/.git
+git clone https://github.com/toshke/big-blue-button-cloudformation-cfhl.git
 ```
 ### Configuration
 
