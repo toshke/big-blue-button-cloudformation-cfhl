@@ -5,11 +5,11 @@ RUN_AWSCLI=docker-compose run --rm -v $$PWD:/src -w /src -u 0 awscli
 CFHL_DOCKER_TAG ?= latest
 TEMPLATES_DIST_VERSION ?= $(shell date +%s)
 
-DIST_BUCKET ?=
-DIST_PREFIX ?=
 DIST_VERSION ?= latest
 AWS_REGION ?= ap-southeast-2
 AWS_DEFAULT_REGION ?= ap-southeast-2
+DIST_BUCKET ?= templates-$(AWS_REGION).cfhighlander.info
+DIST_PREFIX ?= templates/bbb
 
 all: clean build test
 

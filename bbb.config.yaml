@@ -29,3 +29,7 @@ tags:
 
 # name for the backup plan
 backup_plan_name: BigBlueButton
+
+# default value for instance type parameter, applicable to both
+# EC2 and ASG deployments
+instance_type_default: t3.xlarge
