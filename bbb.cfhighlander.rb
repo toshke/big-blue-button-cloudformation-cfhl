@@ -9,27 +9,37 @@ CfhighlanderTemplate do
     unless render_vpc
       ComponentParam 'SubnetIds', type: 'List<AWS::EC2::Subnet::Id>', description: 'Subnets to place ASG instances into'
     end
-    ComponentParam :DeploymentMode,'EC2', type: 'String', allowedValues: %w(ASG EC2), description: 'Deploy in an AutoScalingGroup or as a static EC2 server'
+    ComponentParam :DeploymentMode, 'EC2', type: 'String', allowedValues: %w(ASG EC2), description: 'Deploy in an AutoScalingGroup or as a static EC2 server'
     ComponentParam :InstanceType, instance_type_default, description: 'InstanceType to use for ASG instances'
   end
 
   Condition(:EIPNotProvided, FnEquals(Ref(:ElasticIP), '')) if external_eip
   Condition(:EIPProvided, FnNot(FnEquals(Ref(:ElasticIP), ''))) if external_eip
   Condition(:ZoneProvided, FnNot(FnEquals(Ref(:Route53Zone), '')))
-  Condition(:DeployAsg, FnEquals(Ref(:DeploymentMode),'ASG'))
-  Condition(:DeployEC2, FnEquals(Ref(:DeploymentMode),'EC2'))
+  Condition(:DeployAsg, FnEquals(Ref(:DeploymentMode), 'ASG'))
+  Condition(:DeployEC2, FnEquals(Ref(:DeploymentMode), 'EC2'))
 
   # render vpc with public subnets to place big blue instance in
   Component template: 'simple-vpc', name: 'vpc' if render_vpc
-
-
   user_data = File.read "#{template_dir}/user_data.sh"
+
+  compute_config = {
+      'user_data' => user_data,
+      'tags' => tags,
+      'policies' => policies,
+      'allow_ssh' => allow_ssh,
+      'allow_incoming' => allow_incoming,
+      'public_ip' => public_ip,
+      'name' => 'big-blue-button',
+      'health_check_grace' => health_check_grace
+  }
+
   Component template: 'simple-asg', name: 'asg', condition: :DeployAsg, conditional: true,
-      config: { 'user_data' => user_data, 'tags' => tags } do
+      config: compute_config do
     # passing parameter values
-    parameter name: 'ImageId', value: Ref(:ImageId)
-    parameter name: 'SubnetIds', value: FnGetAtt('vpc', 'Outputs.PublicA') if render_vpc
-    parameter name: 'SubnetIds', value: FnJoin(',', Ref('SubnetIds')) unless render_vpc
+    parameter name: :ImageId, value: Ref(:ImageId)
+    parameter name: :SubnetIds, value: FnGetAtt('vpc', 'Outputs.PublicA') if render_vpc
+    parameter name: :SubnetIds, value: FnJoin(',', Ref('SubnetIds')) unless render_vpc
     parameter name: :EIP, value: FnIf(:EIPProvided, Ref(:ElasticIP), Ref(:EIPResource)) if external_eip
     parameter name: :EIP, value: Ref(:EIPResource) unless external_eip
     parameter name: :WaitHandle, value: Ref(:WaitSetupCompleteHandle)
@@ -46,9 +56,9 @@ CfhighlanderTemplate do
     end
   end
 
-  user_data = File.read "#{template_dir}/user_data.sh"
-  Component template: 'github.com:toshke/cfhl-component-simple-instance#master', name: 'ec2', condition: :DeployEC2, conditional: true,
-      config: { 'user_data' => user_data, 'tags' => tags } do
+  Component template: 'simple-instance', name: 'ec2', condition: :DeployEC2, conditional: true,
+#  Component template: 'github.com:toshke/cfhl-component-simple-instance#master', name: 'ec2', condition: :DeployEC2, conditional: true,
+      config: compute_config do
     # passing parameter values
     parameter name: :Ami, value: Ref(:ImageId)
     parameter name: :SubnetId, value: FnGetAtt('vpc', 'Outputs.PublicA') if render_vpc
@@ -68,7 +78,7 @@ CfhighlanderTemplate do
       ComponentParam :EIP, type: 'String'
       ComponentParam :ConfigSSMPath, default_ssm_path, type: 'String', description: 'Path in SSM to store configuration', isGlobal: true
       ComponentParam :WaitHandle
-      ComponentParam :TerminationProtection,'true', isGlobal: true, allowedValues: %w(true false), description: 'Enable termination protection if deployed in EC2 mode. Has no effect on ASG deployment'
+      ComponentParam :TerminationProtection, 'true', isGlobal: true, allowedValues: %w(true false), description: 'Enable termination protection if deployed in EC2 mode. Has no effect on ASG deployment'
     end
   end
 
