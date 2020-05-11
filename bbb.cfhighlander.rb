@@ -57,8 +57,7 @@ CfhighlanderTemplate do
     end
   end
 
-  Component template: 'simple-instance', name: 'ec2', condition: :DeployEC2, conditional: true,
-#  Component template: 'github.com:toshke/cfhl-component-simple-instance#master', name: 'ec2', condition: :DeployEC2, conditional: true,
+  Component template: 'github.com:toshke/cfhl-component-simple-instance#master', name: 'ec2', condition: :DeployEC2, conditional: true,
       config: compute_config do
     # passing parameter values
     parameter name: :Ami, value: Ref(:ImageId)
