@@ -47,7 +47,7 @@ device_mappings:
     Ebs:
       DeleteOnTermination: true
       Encrypted: true
-      KmsKeyId: '/alias/aws/ebs'
+      KmsKeyId: 'alias/aws/ebs'
       VolumeSize: 20
 
 # grace period in seconds for healthcheck
