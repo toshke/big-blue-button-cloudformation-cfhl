@@ -31,7 +31,8 @@ CfhighlanderTemplate do
       'allow_incoming' => allow_incoming,
       'public_ip' => public_ip,
       'name' => 'big-blue-button',
-      'health_check_grace' => health_check_grace
+      'health_check_grace' => health_check_grace,
+      'device_mappings' => device_mappings
   }
 
   Component template: 'simple-asg', name: 'asg', condition: :DeployAsg, conditional: true,
@@ -66,7 +67,7 @@ CfhighlanderTemplate do
     parameter name: :EIP, value: FnIf(:EIPProvided, Ref(:ElasticIP), Ref(:EIPResource)) if external_eip
     parameter name: :EIP, value: Ref(:EIPResource) unless external_eip
     parameter name: :WaitHandle, value: Ref(:WaitSetupCompleteHandle)
-    parameter name: :RootVolumeSize, value: Ref(:RootVolumeSpace)
+    parameter name: :RootVolumeSpace, value: Ref(:RootVolumeSpace)
     parameter name: :Name, value: tags['Name']
     parameter name: :KeyName, value: ''
     parameter name: :InstanceType, value: Ref(:InstanceType)
