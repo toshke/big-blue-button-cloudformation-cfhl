@@ -79,6 +79,11 @@ machine. Depending on method used, you will need
 `ConfigSSMPath` - Amazon System Manager Parameter store path, where setup will store default credentials and url. You may change the password from Greenlight UI.
 Must start with forward slash `/`.
 
+`DeploymentMode` - Either **EC2** or **ASG**. Self explanatory, ASG will provide auto-healing functionality,
+                  with EC2, you can start/stop the instance as cost savings measure. Defaults to `EC2`
+
+`TerminationProtection` - Applicable only in `EC2` mode. Set to `true` to disable instance termination via API,
+as protection from incidental instance termination.
 
 ## Operations
 
@@ -217,6 +222,3 @@ $ cfhighlander cfpublish --validate bbb --dstbucket templates.cfhighlander.info 
 ```
 
 After cfpublish command, launch stack url will be displayed in terminal output
-
-
-
