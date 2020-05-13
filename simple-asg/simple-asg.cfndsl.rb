@@ -16,8 +16,8 @@ CloudFormation do
   allow_incoming.each do |it|
     rule = { CidrIp: it['range'], IpProtocol: it.fetch('protocol', 'tcp') }
     if it['port'].to_s.include? '-'
-      rule[:FromPort] = it['port'].split('-')[0]
-      rule[:ToPort] = it['port'].split('-')[1]
+      rule[:FromPort] = it['port'].split('-')[0].to_i
+      rule[:ToPort] = it['port'].split('-')[1].to_i
     else
       rule[:FromPort] = it['port'].to_i
       rule[:ToPort] = it['port'].to_i
@@ -83,6 +83,7 @@ CloudFormation do
     TerminationPolicies termination_policies
     Tags [{ Key: 'Name', Value: "#{name}-asg", PropagateAtLaunch: true }] if tags.empty?
     Tags tags unless tags.empty?
+    HealthCheckGracePeriod health_check_grace
   end
 
 end
