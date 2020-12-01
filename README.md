@@ -42,7 +42,7 @@ admin credentials.
 | `sa-east-1` | South America (Sao Paulo) | <a target="_blank" href="https://console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/new?stackName=big-blue-button&templateURL=https://s3.sa-east-1.amazonaws.com/templates-sa-east-1.cfhighlander.info/templates/bbb/1589275224/bbb.compiled.yaml"><img src="https://raw.githubusercontent.com/toshke/big-blue-button-cloudformation-cfhl/fec34f65f91ef984f95945a2e6e285c6b54f9992/launch-stack.svg" /></a>  |
 | `ca-central-1` | Canada (Central) | <a target="_blank" href="https://console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/new?stackName=big-blue-button&templateURL=https://s3.ca-central-1.amazonaws.com/templates-ca-central-1.cfhighlander.info/templates/bbb/1589275224/bbb.compiled.yaml"><img src="https://raw.githubusercontent.com/toshke/big-blue-button-cloudformation-cfhl/fec34f65f91ef984f95945a2e6e285c6b54f9992/launch-stack.svg" /></a>  |
 
-[You can watch the setup on-screen video recording here](https://youtu.be/ViCy0GsNRVQ)
+[You can watch the setup on-screen video recording here](https://youtu.be/XhMEnvm4220)
 
 ## Intro
 
